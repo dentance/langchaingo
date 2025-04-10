@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
-	"log/slog"
 	"os"
 	"reflect"
 	"strconv"
@@ -354,7 +353,7 @@ func generateSchemaWithMetadata(data map[string]any) (*IndexSchema, error) {
 			}
 		} else {
 			if value == nil {
-				slog.Warn("Ignore nil value", "key", key)
+				fmt.Println("Ignore nil value", "key", key)
 				continue
 			}
 			//nolint: exhaustive
@@ -370,7 +369,7 @@ func generateSchemaWithMetadata(data map[string]any) (*IndexSchema, error) {
 				field := TagField{Name: key, Separator: ","}
 				schema.Tag = append(schema.Tag, field)
 			default:
-				slog.Warn("ignore invalid metadata value", "key", key, "value", value, "type", reflect.TypeOf(value).String())
+				fmt.Println("ignore invalid metadata value", "key", key, "value", value, "type", reflect.TypeOf(value).String())
 			}
 		}
 	}

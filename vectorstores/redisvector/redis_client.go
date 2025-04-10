@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"log/slog"
 	"reflect"
 	"strconv"
 
@@ -121,7 +120,7 @@ func (c RueidisClient) generateHSetCMD(prefix string, doc schema.Document) (stri
 			} else if _v, ok := v.([]float64); ok {
 				kvs = append(kvs, VectorString64(_v))
 			} else {
-				slog.Warn("the type of content vector filed is invalid", "type", reflect.TypeOf(v))
+				fmt.Println("the type of content vector filed is invalid", "type", reflect.TypeOf(v))
 			}
 		} else {
 			kvs = append(kvs, fmt.Sprintf("%v", v))

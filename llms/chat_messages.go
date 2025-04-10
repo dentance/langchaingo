@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"log/slog"
 	"strings"
 )
 
@@ -187,7 +186,7 @@ func (c ChatMessageModel) ToChatMessage() ChatMessage {
 	case string(ChatMessageTypeHuman):
 		return HumanChatMessage{Content: c.Data.Content}
 	default:
-		slog.Warn("convert to chat message failed with invalid message type", "type", c.Type)
+		fmt.Println("convert to chat message failed with invalid message type", "type", c.Type)
 		return nil
 	}
 }
